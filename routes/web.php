@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::post('/login', [AccountsController::class,'login'])->name('login');
+// Route::post('/register', [AccountsController::class,'register'])->name('register');
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/',[HomeController::class,'dashboard'])->name('dashboard');
+    Route::post('/newpost',[ArticlesController::class,'store'])->name('new-post');
+    });
+
+
+
+
