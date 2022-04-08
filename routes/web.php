@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/',[HomeController::class,'dashboard'])->name('dashboard');
     Route::Post('/newpost',[ArticlesController::class,'store'])->name('new-post');
-    Route::post('/newpost/like/{id}',[ArticlesController::class,'like'])->name('like');
+    Route::get('/newpost/like/{id}',[ArticlesController::class,'like'])->name('like');
+    Route::Post('/comment/{id}',[CommentsController::class,'store'])->name('comment-store');
     });
 
 

@@ -20,7 +20,7 @@ class ArticlesController extends Controller
     }
     public function like($id)
     {
-       $this->_article->like($id);
+        $this->_article->like($id);
         return redirect(route('dashboard'));
     }
 }

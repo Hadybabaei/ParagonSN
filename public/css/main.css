@@ -21,7 +21,6 @@
     display: flex;
 }
 .Middle{
-    background-color: red;
     flex: 3;
 }
 .side-right{
@@ -46,4 +45,42 @@
 .posts
 {
     background-color: white;
+    margin-top: 1%;
+    border-bottom:solid black 1px;
+}
+.post-options #like:hover
+{
+    cursor: pointer;
+}
+.post-options
+{
+    padding: 5px;
+}
+.user-info
+{
+    display: flex;
+}
+.user-prof
+{
+    width: 5%;
+    border-radius: 50%;
+    padding: 5px;
+}
+.user-prof img 
+{
+    width: 100%;
+}
+.user-info h6 
+{
+    width:25%;
+    margin-top: 1%;
+}
+.comments button
+{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.post-caption
+{
+    padding: 2px;
 }

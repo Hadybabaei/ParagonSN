@@ -30,8 +30,20 @@ trait Articles
     public function like($id)
     {
         $article=Article::findOrFail($id);
+        $user_like=explode(",", $article->like_id);
         $like=$article->likes;
-        $article->likes=$like+1;
-        $article->save();
+        if (in_array(Auth::user()->id, $user_like))
+            { 
+                $article->likes=$like-1;
+                $article->like_id=implode(",",array_filter(str_replace(Auth::user()->id,"",$user_like)));
+                $article->save();
+        }elseif(!in_array(Auth::user()->id, $user_like))
+        {
+            $article->like_id=$article->like_id.",".Auth::user()->id;
+            $article->likes=$like+1;
+            $article->save();
+        }else{
+            return "sth Wrong happend";
+        }
     }
 }

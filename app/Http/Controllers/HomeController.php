@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\interfaces\Iarticles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,7 @@ class HomeController extends Controller
     {
         if (Auth::user())
         {
-           $datas=Auth::user()->Article;
+           $datas=Article::with('Comment','User')->get();
            return view('dashboard',compact('datas'));
         }else{
             redirect(route('home'));

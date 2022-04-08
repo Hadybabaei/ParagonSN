@@ -11,17 +11,37 @@
     <div class="Middle">
         @foreach ($datas as $article)
         <div class="posts">
+            <div class="user-info">
+                <div class="user-prof">
+                <img src={{$article->user->avatar}} alt="prof">
+                </div>
+                <h6>{{$article->user->name}}</h6>
+            </div>
             <div class="post-img">
                 <img id="art-img" src={{$article->image}} >
             </div>
-            <form id="like-form" action={{route('like',$article->id)}} method="post">
-                @csrf
-            </form>
             <div class="post-options">
-                <img src="/images/toppng.com-heart-icon-transparent-icon-symbol-love-black-729x669.png" width="20" height="20" onclick="likeSubmit()">
+                <a href={{route('like',$article->id)}}>
+                    <img id="like" src="/images/toppng.com-heart-icon-transparent-icon-symbol-love-black-729x669.png" width="20" height="20">
+                </a>
+                <small>{{$article->likes}}</small>
             </div>
             <div class="post-caption">
-                <h6> {{$article->caption}}</h6>
+                <h6>{{$article->user->name}}:</h6>
+                <p> {{$article->caption}}</p>
+            </div>
+            <div class="comments">
+                <div class="commented">
+                    <small>view all {{count($article->Comment)}} comments .. </small>
+                    @foreach ($article->Comment as $comment)
+                        <p>{{$comment->User->name}}: {{$comment->body}}</p>
+                    @endforeach
+                </div>
+                <form action={{route('comment-store',$article->id)}} method="POST">
+                    @csrf
+                <textarea class="form-control" style="resize: none" name="body" placeholder="submit comments .."></textarea>
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </form>
             </div>
         </div>
         @endforeach
