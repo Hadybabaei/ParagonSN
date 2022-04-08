@@ -15,8 +15,14 @@ New Post
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action={{route('new-post')}}>
+            <form method="POST" action={{route('new-post')}}  enctype="multipart/form-data" id="uploadForm">
                 @csrf
+                <div class="form-group">
+                <input class="form-control" type="file" name="image" placeholder="Choose image" id="file">
+                    @error('image')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="form-group">
                   <label for="title">Title:</label>
                   <input type="text" class="form-control" placeholder="Enter title" name="title">

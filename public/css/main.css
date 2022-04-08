@@ -9,3 +9,41 @@
     width: 25%;
     display: inline-block;
 }
+.header
+{
+    background-color: blueviolet;
+    height: 50px;
+    width: 100%;
+}
+.main
+{
+    width: 100%;
+    display: flex;
+}
+.Middle{
+    background-color: red;
+    flex: 3;
+}
+.side-right{
+    background-color: aqua;
+    flex: 1;
+}
+.side-left
+{
+    background-color: yellow;
+    flex: 1;
+}
+.posts #art-img 
+{
+    width: 100%;
+    height: 100%;
+}
+.post-img
+{
+    width:100%;
+    height: 80%;
+}
+.posts
+{
+    background-color: white;
+}

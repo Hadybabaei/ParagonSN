@@ -18,4 +18,9 @@ class ArticlesController extends Controller
         $this->_article->store($request);
         return redirect(route('dashboard'))->with('success','Article Created Successfuly');
     }
+    public function like($id)
+    {
+       $this->_article->like($id);
+        return redirect(route('dashboard'));
+    }
 }

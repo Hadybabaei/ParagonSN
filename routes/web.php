@@ -28,7 +28,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/',[HomeController::class,'dashboard'])->name('dashboard');
-    Route::post('/newpost',[ArticlesController::class,'store'])->name('new-post');
+    Route::Post('/newpost',[ArticlesController::class,'store'])->name('new-post');
+    Route::post('/newpost/like/{id}',[ArticlesController::class,'like'])->name('like');
     });
 
 

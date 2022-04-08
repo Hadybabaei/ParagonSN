@@ -15,4 +15,8 @@ class Article extends Model
         'like',
         'user_id',
     ];
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
